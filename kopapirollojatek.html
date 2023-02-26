@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!--böngésző betűméretének háromszorosát jelenti az 3rem (style h1)-->
+
+    <title>Kő-papír-olló játék</title>
+    <style>
+        body {
+            font-family: cursive;
+            text-align: center;
+            background: #ffffff;
+            background-image: url("kpo.png"); /* fallback */
+            background-image: url("kpo.png"), linear-gradient(rgb(255, 255, 0), rgb(0, 128, 0));
+            background-position: bottom center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        button {
+            font-family: cursive;
+            font-size: 2rem;
+            padding: 15px 25px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 0, 0.344);
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.75);
+        }
+
+        button:hover {
+            background-color: rgba(0, 128, 0, 0.593);
+        }
+
+        #result {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #result.win {
+            color: rgb(5, 132, 88);
+        }
+
+        #result.lose {
+            color: rgb(128, 128, 128);
+        }
+
+        #result.draw {
+            color: rgb(255, 230, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Kő-papír-olló játék</h1>
+    <button id="rock">Kő</button>
+    <button id="paper">Papír</button>
+    <button id="scissors">Olló</button>
+    <div id="result"></div>
+    <script>
+        const buttons = document.querySelectorAll("button");
+        const result = document.getElementById("result");
+        const score = {
+            user: 0,
+            computer: 0
+        };
+
+        const choices = ["rock", "paper", "scissors"];
+
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const userChoice = button.id;
+                const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+                if (userChoice === computerChoice) {
+                    result.innerHTML = "Döntetlen, azt mutattam amit te! &#128528";
+                    result.className = "draw";
+                }
+                if (userChoice === "rock" && computerChoice === "scissors") {
+                    result.innerHTML = "&#128558 Gratulálok, nyertél, az ollót választottam!";
+                    result.className = "win";
+                    score.user++;
+                } else if (userChoice === "paper" && computerChoice === "rock") {
+                    result.innerHTML = "&#128558 Gratulálok, nyertél, a követ választottam!";
+                    result.className = "win";
+                    score.user++;
+                } else if (userChoice === "scissors" && computerChoice === "paper") {
+                    result.innerHTML = "&#128558 Gratulálok, nyertél, a papírt választottam!";
+                    result.className = "win";
+                    score.user++;
+                }
+                if (userChoice === "rock" && computerChoice === "paper") {
+                    result.innerHTML = "Sajnos vesztettél, a papírt választottam. &#128514";
+                    result.className = "lose";
+                    score.computer++;
+                } else if (userChoice === "paper" && computerChoice === "scissors") {
+                    result.innerHTML = "Sajnos vesztettél, az ollót választottam. &#128514";
+                    result.className = "lose";
+                    score.computer++;
+                } else if (userChoice === "scissors" && computerChoice === "rock") {
+                    result.innerHTML = "Sajnos vesztettél, a követ választottam. &#128514";
+                    result.className = "lose";
+                    score.computer++;
+                }
+
+                // update score
+                const scoreElement = document.createElement("p");
+                scoreElement.innerHTML = `| Játékos: ${score.user} VS Számítógép: ${score.computer} |`;
+                result.appendChild(scoreElement);
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>
+
+
+<!--
+
+    CSS rész
+    A CSS kód a játék kinézetét kezeli. A body rész a betűtípust és az elrendezést állítja be.
+    A h1 a címet formázza, a button a gombok stílusát és a hátteret állítja be.
+    A #result a játék eredményének stílusát állítja be és az eredmények színét állítja be az osztályok win, lose és draw szerint.    
+
+    HTML rész
+    Az HTML kód tartalmazza az alapvető szerkezetet (PL: a cím, oldal tartalma, CSS hivatkozás)
+    A h1 a címet tartalmazza, a gombok a button, az eredmény a result és jeleníti meg ezeket. 
+    A JavaScript kódrészre is utal a <script> résszel.
+
+    JavaScript része
+    Gombok kattintása, a számítógép választása és a két választás összehasonlítása és ezek megjelenítése a result-ba, illetve a pontok kiírása.
+
+-->
