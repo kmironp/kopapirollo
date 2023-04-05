@@ -1,1 +1,3 @@
-game
+#rockpaperscissorsgame
+
+Az alábbi linken kipróbálható
