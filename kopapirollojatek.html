@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="hu">
 
 <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, kezdeti-scale=1" /> 
 
     <!--böngésző betűméretének háromszorosát jelenti az 3rem (style h1)-->
 
@@ -86,7 +89,7 @@
                     result.className = "draw";
                 }
                 if (userChoice === "rock" && computerChoice === "scissors") {
-                    result.innerHTML = "&#128558 Gratulálok, nyertél, az ollót választottam!";
+                    result.innerHTML = "&#128558 Azta! Gratulálok, nyertél, az ollót választottam!";
                     result.className = "win";
                     score.user++;
                 } else if (userChoice === "paper" && computerChoice === "rock") {
@@ -94,7 +97,7 @@
                     result.className = "win";
                     score.user++;
                 } else if (userChoice === "scissors" && computerChoice === "paper") {
-                    result.innerHTML = "&#128558 Gratulálok, nyertél, a papírt választottam!";
+                    result.innerHTML = "&#128558 Gratulálok, ügyes vagy, nyertél, a papírt választottam!";
                     result.className = "win";
                     score.user++;
                 }
@@ -103,11 +106,11 @@
                     result.className = "lose";
                     score.computer++;
                 } else if (userChoice === "paper" && computerChoice === "scissors") {
-                    result.innerHTML = "Sajnos vesztettél, az ollót választottam. &#128514";
+                    result.innerHTML = "Hah sajnos vesztettél, az ollót választottam. &#128514";
                     result.className = "lose";
                     score.computer++;
                 } else if (userChoice === "scissors" && computerChoice === "rock") {
-                    result.innerHTML = "Sajnos vesztettél, a követ választottam. &#128514";
+                    result.innerHTML = "Haha! Sajnos vesztettél, a követ választottam. &#128514";
                     result.className = "lose";
                     score.computer++;
                 }
